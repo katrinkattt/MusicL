@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, StatusBar, View, Button } from 'react-native';
+import { ScrollView, StatusBar, View, Button, Text } from 'react-native';
 import { Section } from '../components/section';
 import { Logo } from '../components/logo';
 import { RUS } from '../lang/lang';
@@ -19,10 +19,11 @@ export const HomeScreen = () => {
             onPress={() => navigation.navigate('Profile')}
           />
           <AlbumSection title="qwer" />
-          <Section title={RUS.tracks.title}>{RUS.tracks.descr}</Section>
-          <Section title={RUS.tracks.title}>{RUS.tracks.descr}</Section>
-          <Section title={RUS.tracks.title}>{RUS.tracks.descr}</Section>
-          <Section title={RUS.tracks.title}>{RUS.tracks.descr}</Section>
+          <Section title={RUS.tracks.title} text={RUS.tracks.descr} />
+          <Section title={RUS.tracks.title} text={RUS.tracks.descr} />
+          <Section title={RUS.tracks.title} text={RUS.tracks.descr}>
+            <Logo size={0.9} />
+          </Section>
         </ScrollView>
       </MainTheme>
     </View>

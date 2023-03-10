@@ -5,14 +5,16 @@ import { MainText } from '../style/theme';
 
 type SectionProps = PropsWithChildren<{
   title?: string;
+  text?: string;
   children?: JSX.Element;
 }>;
 
-export const Section = ({ children, title }: SectionProps): JSX.Element => {
+export const Section = ({ children, title, text }: SectionProps): JSX.Element => {
   return (
     <View style={styles.sectionContainer}>
       <MainText text={title} size={24} style={styles.sectionTitle} />
-      <MainText style={styles.sectionDescription}>{children}</MainText>
+      <MainText text={text} style={styles.sectionDescription} />
+      {children}
     </View>
   );
 };
