@@ -1,0 +1,17 @@
+.main_logo_mini {
+  width: 4em;
+}
+.tool_bar {
+  color: #f9f5ff;
+  background-color: #ff481a;
+  background-image: linear-gradient(45deg, #5d009c, #ff571a);
+  color: #fff;
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  transform: translatez(0);
+}
+.item {
+  width: 10em;
+  padding: 10px;
+  padding-bottom: 20px;
+}
