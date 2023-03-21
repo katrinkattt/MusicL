@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, StatusBar, View, Button, Text } from 'react-native';
+import { ScrollView, View, Button } from 'react-native';
 import { Section } from '../components/section';
 import { Logo } from '../components/logo';
 import { RUS } from '../lang/lang';
