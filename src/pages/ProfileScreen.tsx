@@ -9,7 +9,6 @@ export const ProfileScreen = () => {
   return (
     <MainTheme>
       {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}> */}
-      <Button color={AcentColor} title="Home" onPress={() => navigation.navigate('Home')} />
       <View style={{ justifyContent: 'center' }}>
         <Section title="User" />
       </View>

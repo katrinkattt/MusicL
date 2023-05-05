@@ -1,0 +1,37 @@
+{
+  "name": "Favorite playlist",
+  "trackList": [
+    {
+      "url": "../../files/David_Guetta_Bebe_Rexha_I_m_Good_Blue_Offic.mp3",
+      "title": "I'm Good",
+      "artist": "David Guetta",
+      "artwork": "require('../src/public/musicimg.jpeg')",
+      "duration": 177,
+      "loadImg": "require('../public/musicimg.jpeg')"
+    },
+    {
+      "url": "require('../../files/Nirvana_Smells_Like_Teen_Spirit_Official_Music_.mp3')",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "artwork": "https://i1.sndcdn.com/artworks-000661266283-od11y9-t500x500.jpg",
+      "duration": 278,
+      "loadImg": ""
+    },
+    {
+      "url": "../../files/David_Guetta_Bebe_Rexha_I_m_Good_Blue_Offic.mp3",
+      "title": "I'm Good",
+      "artist": "David Guetta",
+      "artwork": "require('../src/public/musicimg.jpeg')",
+      "duration": 177,
+      "loadImg": "require('../public/musicimg.jpeg')"
+    },
+    {
+      "url": "require('../../files/Nirvana_Smells_Like_Teen_Spirit_Official_Music_.mp3')",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "artwork": "https://i1.sndcdn.com/artworks-000661266283-od11y9-t500x500.jpg",
+      "duration": 278,
+      "loadImg": ""
+    }
+  ]
+}

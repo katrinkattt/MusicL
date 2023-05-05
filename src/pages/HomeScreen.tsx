@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView, View, Button } from 'react-native';
+import { ScrollView, View, Button, TouchableOpacity } from 'react-native';
 import { Section } from '../components/section';
 import { Logo } from '../components/logo';
 import { RUS } from '../lang/lang';
@@ -8,6 +8,7 @@ import { AlbumSection } from '../components/album';
 
 export const HomeScreen = () => {
   const navigation = useNavigation();
+  navigation.setOptions({ title: '' });
   return (
     <View>
       <MainTheme>
@@ -18,7 +19,13 @@ export const HomeScreen = () => {
             title="Go to Profile"
             onPress={() => navigation.navigate('Profile')}
           />
-          <AlbumSection title="qwer" />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('PlayList');
+            }}
+          >
+            <AlbumSection title="Go to playList" />
+          </TouchableOpacity>
           <Section title={RUS.tracks.title} text={RUS.tracks.descr} />
           <Section title={RUS.tracks.title} text={RUS.tracks.descr} />
           <Section title={RUS.tracks.title} text={RUS.tracks.descr}>
