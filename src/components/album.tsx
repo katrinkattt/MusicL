@@ -18,7 +18,7 @@ export const AlbumSection = ({ title }: AlbumSectionProps): JSX.Element => {
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    margin: 30,
+    margin: 20,
     paddingHorizontal: 24,
   },
   albumTitle: {

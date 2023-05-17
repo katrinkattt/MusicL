@@ -23,7 +23,7 @@ const ProfileStackScreen = () => {
         headerShown: false,
       }}
     >
-      <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+      <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen} />
       <ProfileStack.Screen name="Settings" component={SettingsScreen} />
     </ProfileStack.Navigator>
   );
@@ -33,7 +33,7 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="Playlist" component={PlayListScreen} />
       <HomeStack.Screen name="Player" component={PlayerScreen} />
     </HomeStack.Navigator>
@@ -55,7 +55,7 @@ const TabStack = () => {
       }}
     >
       <Tab.Screen
-        name="HomeMain"
+        name="Home"
         component={HomeStackScreen}
         options={{
           headerShown: false,

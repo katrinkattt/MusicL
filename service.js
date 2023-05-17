@@ -78,24 +78,16 @@ export async function addTracks(tracks) {
   }
   await TrackPlayer.setRepeatMode(RepeatMode.Queue);
 }
-export async function playbackService() {
-  TrackPlayer.addEventListener(Event.RemotePause, () => {
-    console.log('Event.RemotePause');
-    TrackPlayer.pause();
-  });
+export const PlaybackService = async function () {
+  TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
 
-  TrackPlayer.addEventListener(Event.RemotePlay, () => {
-    console.log('Event.RemotePlay');
-    TrackPlayer.play();
-  });
+  TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
 
   TrackPlayer.addEventListener(Event.RemoteNext, () => {
-    console.log('Event.RemoteNext');
     TrackPlayer.skipToNext();
   });
 
   TrackPlayer.addEventListener(Event.RemotePrevious, () => {
-    console.log('Event.RemotePrevious');
     TrackPlayer.skipToPrevious();
   });
-}
+};

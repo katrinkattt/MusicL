@@ -35,11 +35,11 @@ function Playlist() {
     loadPlaylist();
   }, []);
 
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], (event) => {
-    if (event.state == State.nextTrack) {
-      TrackPlayer.getActiveTrackIndex().then((index) => setCurrentTrack(index));
-    }
-  });
+  // useTrackPlayerEvents([Event.PlaybackTrackChanged], (event) => {
+  //   if (event.state == State.nextTrack) {
+  //     TrackPlayer.getActiveTrackIndex().then((index) => setCurrentTrack(index));
+  //   }
+  // });
 
   function PlaylistItem({ index, element }) {
     console.log('PlaylistItem', element);

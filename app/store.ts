@@ -18,22 +18,22 @@ function activePlayList(state = { list: [] }, action) {
       return state;
   }
 }
-function currentTrack(state = { track: {} }, action) {
-  switch (action.type) {
-    case 'SWITCH_CURR_TRACK':
-      return { track: action };
-    case 'UNACTIVE_TRACK':
-      return { track: {} };
-    default:
-      return state;
-  }
-}
+// function currentTrack(state = { track: {} }, action) {
+//   switch (action.type) {
+//     case 'SWITCH_CURR_TRACK':
+//       return { track: action };
+//     case 'UNACTIVE_TRACK':
+//       return { track: {} };
+//     default:
+//       return state;
+//   }
+// }
 
 export const store = configureStore({
   reducer: {
     activePlayer,
     activePlayList,
-    currentTrack,
+    // currentTrack,
   },
 });
 
