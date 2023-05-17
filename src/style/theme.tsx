@@ -10,11 +10,14 @@ export const MainThemeColor = () => {
   const theme = !isDarkMode ? '#000' : Colors.lighter;
   return theme;
 };
-
+export const colorTxt = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return isDarkMode ? '#fff' : '#000';
+};
 export const MainTheme = ({ children }: MainThemeProps) => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
-    backgroundColor: !isDarkMode ? '#000' : Colors.lighter,
+    backgroundColor: isDarkMode ? '#000' : Colors.lighter,
     height: '100%',
   };
   return <View style={backgroundStyle}>{children}</View>;
@@ -26,7 +29,7 @@ export declare interface MainThemeProps {
 export const MainText = ({ text, size, style, children }: MainTextProps) => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
-    color: isDarkMode ? Colors.darker : '#fff',
+    color: !isDarkMode ? Colors.darker : '#fff',
     fontSize: size,
     ...style,
   };

@@ -17,7 +17,7 @@ import TrackPlayer, {
   Event,
   State,
 } from 'react-native-track-player';
-import { AcentColor, ScreenWidth } from '../style/theme';
+import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
 import { QueueList } from '../../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
 
@@ -44,10 +44,14 @@ function Playlist() {
   function PlaylistItem({ index, element }) {
     console.log('PlaylistItem', element);
 
-    const isDarkMode = useColorScheme() === 'dark';
-    const colorTxt = isDarkMode ? '#fff' : '#ccc';
     return (
-      <View style={styles.trackContainer}>
+      <View
+        style={
+          currentTrack == index
+            ? [styles.trackContainer, styles.trackContainerActive]
+            : styles.trackContainer
+        }
+      >
         <View style={styles.img_track_load}>
           {(element?.artwork && element?.loadImg && (
             <Image style={styles.img_track} source={require('../public/musicimg.jpeg')} />
@@ -60,11 +64,14 @@ function Playlist() {
         <View style={{ padding: 10, width: ScreenWidth * 0.55 }}>
           <Text
             numberOfLines={2}
-            style={[styles.playlistItem, { color: currentTrack == index ? AcentColor : colorTxt }]}
+            style={[
+              styles.playlistItem,
+              { color: currentTrack == index ? AcentColor : colorTxt() },
+            ]}
           >
             {element?.title}
           </Text>
-          <Text numberOfLines={1} style={{ color: colorTxt }}>
+          <Text numberOfLines={1} style={{ color: colorTxt() }}>
             {element?.artist}
           </Text>
         </View>
@@ -108,7 +115,7 @@ const Controls = ({ onShuffle }) => {
   }
 
   return (
-    <TouchableOpacity onPress={handlePlayPress} style={{ width: 60, height: 60 }}>
+    <TouchableOpacity onPress={handlePlayPress} style={{ marginTop: 16, width: 60, height: 60 }}>
       {!playerState == State.Playing ? (
         <Image
           style={{ width: 60, resizeMode: 'contain', tintColor: AcentColor }}
@@ -159,7 +166,6 @@ export const PlayListScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Playlist />
-      {/* <TrackProgress /> */}
     </View>
   );
 };
@@ -171,11 +177,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 10,
   },
+  trackContainerActive: {
+    backgroundColor: 'rgba(255, 225, 225, .1)',
+  },
   img_track_load: {
     height: ScreenWidth * 0.2,
     width: ScreenWidth * 0.2,
     backgroundColor: AcentColor,
-    marginBottom: 16,
   },
   img_track: {
     height: ScreenWidth * 0.2,
