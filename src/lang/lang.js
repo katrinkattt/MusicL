@@ -1,5 +1,9 @@
 export const RUS = {
   main_title: 'Музыка и не только',
+  buttons: {
+    goPlayList: 'Перейти к плейлисту',
+    play: 'Плей',
+  },
   tracks: {
     title: 'Треки',
     descr: 'Слушайте любимые песни на любом доступном языке',
@@ -9,7 +13,7 @@ export const RUS = {
     descr: 'Караоке подпевайте хитам',
   },
   autors: {
-    title: 'Авторам For Autors',
+    title: 'Авторам',
     descr: 'Станьте исполнителем добавляйте свои каверы',
   },
   about_me: {
@@ -19,6 +23,10 @@ export const RUS = {
 };
 export const ENG = {
   main_title: 'Music and more',
+  buttons: {
+    goPlayList: 'Go to playList',
+    play: 'Play',
+  },
   tracks: {
     title: 'Tracks',
     descr: 'Listen to your favorite songs in any available language',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useColorScheme } from 'react-native';
+// import { Provider } from 'react-redux';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,6 +12,8 @@ import { ProfileScreen } from './src/pages/ProfileScreen';
 import { FindScreen } from './src/pages/FindScreen';
 import { AcentColor } from './src/style/theme';
 import { Logo } from './src/components/logo';
+// import { store, persistor } from './src/redux/store';
+// import { PersistGate } from 'redux-persist/integration/react';
 
 const Tab = createBottomTabNavigator();
 
@@ -103,8 +105,12 @@ const MyTheme = {
 
 export default function App() {
   return (
+    // <Provider store={store}>
+    //   <PersistGate persistor={persistor} loading={<Logo />}>
     <NavigationContainer theme={MyTheme}>
       <TabStack />
     </NavigationContainer>
+    //   </PersistGate>
+    // </Provider>
   );
 }

@@ -1,4 +1,4 @@
-package com.musicl;
+package com.MusicL;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

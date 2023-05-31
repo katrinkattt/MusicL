@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.musicl"
+    namespace "com.MusicL"
     defaultConfig {
-        applicationId "com.musicl"
+        applicationId "com.MusicL"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

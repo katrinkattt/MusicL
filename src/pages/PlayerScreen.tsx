@@ -22,23 +22,12 @@ import { QueueList } from '../../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
 import { getPlaybackState } from 'react-native-track-player/lib/trackPlayer';
 
-/////
-const events = [Event.PlaybackState, Event.PlaybackError];
+const events = [Event.PlaybackState, Event.PlaybackError, Event.PlaybackActiveTrackChanged];
 
-function Playlist() {
-  console.log('Playlist');
-  const [queue, setQueue] = useState([]);
+function Playlist({ queue }) {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [playerState, setPlayerState] = useState(null);
-
-  async function loadPlaylist() {
-    const getQueue = await TrackPlayer.getQueue();
-    setQueue(getQueue);
-  }
-
-  useEffect(() => {
-    loadPlaylist();
-  }, []);
+  console.log('curretntttt TRACK', currentTrack);
 
   useTrackPlayerEvents(events, (event) => {
     if (event.type === Event.PlaybackError) {
@@ -47,11 +36,12 @@ function Playlist() {
     if (event.type === Event.PlaybackState) {
       setPlayerState(event.state);
     }
+    if (event.state == State.nextTrack) {
+      TrackPlayer.getActiveTrackIndex().then((index) => setCurrentTrack(index));
+    }
   });
-  // const isPlaying = playerState === State.Playing;
 
   const TrackProgress = ({ durationDefault }) => {
-    console.log('TrackProgress');
     const { position, duration } = useProgress();
 
     const format = (seconds) => {
@@ -80,18 +70,12 @@ function Playlist() {
     );
   };
   const Controls = ({ onShuffle }) => {
-    const playerState = usePlaybackState();
-    const isPlaying = playerState === State.Playing;
+    const playBackState = usePlaybackState();
+    const isPlaying = playBackState.state == 'playing';
     async function handlePlayPress() {
-      console.log('HANDLE PLAYYYYYYYYY  queue', queue);
-      const res = (await getPlaybackState()).state;
-      console.log('RESSSSS getPlaybackState____', res);
-
-      if (isPlaying) {
-        console.log('PAUSEEEEEEEEEEEE');
+      if ((await getPlaybackState()).state == State.Playing) {
         TrackPlayer.pause();
       } else {
-        console.log('PLAYYYYYYYYYYYY');
         TrackPlayer.play();
       }
     }
@@ -152,8 +136,6 @@ function Playlist() {
   };
 
   const PlaylistItem = ({ element }) => {
-    console.log('PlaylistItem', element);
-
     // function handleItemPress() {
     //   TrackPlayer.skip(index);
     // }
@@ -178,29 +160,29 @@ function Playlist() {
 
   async function handleShuffle() {
     console.log('handleShuffle');
-    // try {
-    // SoundPlayer.playUrl('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-    // // } catch (e) {
 
     // let queue = await TrackPlayer.getQueue();
-    await TrackPlayer.reset();
-    queue.sort(() => Math.random() - 0.5);
-    await TrackPlayer.add(queue);
-    loadPlaylist();
+    // await TrackPlayer.reset();
+    // queue.sort(() => Math.random() - 0.5);
+    // await TrackPlayer.add(queue);
+    // loadPlaylist();
   }
-  console.log(queue, 'QUEUEEEEE');
 
   return (
     <View style={styles.trackContainer}>
       <PlaylistItem element={queue[currentTrack]} />
       <Controls onShuffle={handleShuffle} />
+      <Text style={{ color: '#fff', paddingTop: 18, fontSize: 16 }}>
+        No matter where I go, it's a good time, yeah
+      </Text>
     </View>
   );
 }
 
 export const PlayerScreen = () => {
   const navigation = useNavigation();
-  const { list, nameList } = QueueList;
+  const { data, nameList } = QueueList;
+  const [queueImp, setQueueImp] = useState([]);
   navigation.setOptions({ title: nameList });
   /// CURRENT PLAYLIST NEED REDUCER
 
@@ -211,7 +193,8 @@ export const PlayerScreen = () => {
       let isSetup = await setupPlayer();
 
       const queue = await TrackPlayer.getQueue();
-      console.log('queue:', queue);
+      setQueueImp(queue);
+      console.log('queue::::', queue);
       if (isSetup && queue.length <= 0) {
         await addTracks(...queue);
       }
@@ -221,7 +204,7 @@ export const PlayerScreen = () => {
     setup();
   }, []);
 
-  if (isPlayerReady) {
+  if (!isPlayerReady) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator size="large" color="#bbb" />
@@ -230,7 +213,7 @@ export const PlayerScreen = () => {
   }
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Playlist />
+      <Playlist queue={queueImp} />
     </View>
   );
 };

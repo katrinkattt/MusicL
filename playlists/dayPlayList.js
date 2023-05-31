@@ -1,7 +1,8 @@
 export const QueueList = {
   nameList: 'day playlist',
-  list: [
+  data: [
     {
+      id: 1,
       url: "require('../../files/Nirvana_Smells_Like_Teen_Spirit_Official_Music_.mp3')",
       title: "I'm Good",
       artist: 'David Guetta',
@@ -11,6 +12,7 @@ export const QueueList = {
       genre: 'Progressive House, Electro House',
     },
     {
+      id: 2,
       url: "require('../../files/Nirvana_Smells_Like_Teen_Spirit_Official_Music_.mp3')",
       title: 'Smells Like Teen Spirit',
       artist: 'Nirvana',
@@ -20,6 +22,7 @@ export const QueueList = {
       genre: 'Progressive House, rock',
     },
     {
+      id: 3,
       url: 'require(../../files/The_Beatles_Here_Comes_The_Sun.mp3)',
       title: 'Here comes the sun',
       artist: 'The Beatles',

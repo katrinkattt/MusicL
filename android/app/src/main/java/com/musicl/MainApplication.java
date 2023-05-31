@@ -1,4 +1,4 @@
-package com.musicl;
+package com.MusicL;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -16,7 +16,10 @@ import TrackPlayer, {
   usePlaybackState,
   Event,
   State,
+  RepeatMode,
 } from 'react-native-track-player';
+// import { PlayerAction } from '../redux/player/playerSlice';
+import { useTypedSelector } from '../hook/useTypedSelector';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
 import { QueueList } from '../../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
@@ -28,6 +31,7 @@ function Playlist() {
 
   async function loadPlaylist() {
     const queue = await TrackPlayer.getQueue();
+
     setQueue(queue);
   }
 
@@ -82,14 +86,14 @@ function Playlist() {
 
   async function handleShuffle() {
     console.log('handleShuffle');
-    let queue = await TrackPlayer.getQueue();
-    await TrackPlayer.reset();
-    queue.sort(() => Math.random() - 0.5);
-    await TrackPlayer.add(queue);
+    //   let queue = await TrackPlayer.getQueue();
+    //   await TrackPlayer.reset();
+    //   queue.sort(() => Math.random() - 0.5);
+    //   await TrackPlayer.add(queue);
 
-    loadPlaylist();
+    //   loadPlaylist();
   }
-  console.log(queue, 'QEQEQ');
+  // console.log(queue, 'QEQEQ');
 
   return (
     <View>
@@ -133,21 +137,54 @@ const Controls = ({ onShuffle }) => {
 export const PlayListScreen = () => {
   const navigation = useNavigation();
 
-  const { list, nameList } = QueueList;
+  const { data, nameList } = QueueList;
   navigation.setOptions({ title: nameList });
   /// CURRENT PLAYLIST NEED REDUCER
+  // const selector = useTypedSelector((state) => state.player);
 
-  const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [isPlayerReady, setIsPlayerReady] = useState(true);
 
+  // useEffect(() => {
+  //   async function setup() {
+  //     let isSetup = await setupPlayer();
+  //     setIsPlayerReady(isSetup);
+  //     await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+  //   }
+
+  //   setup();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (data.length <= 0 && !isPlayerReady) return;
+  //   const addTracks = async () => {
+  //     await TrackPlayer.reset().then(() => {
+  //       TrackPlayer.add(
+  //         data.map((item) => {
+  //           return {
+  //             id: item.id,
+  //             url: item.url,
+  //             title: item.title,
+  //             artist: item.artist,
+  //             artwork: item.artwork,
+  //             color: AcentColor,
+  //           };
+  //         })
+  //       ).then(() => {
+  //         TrackPlayer.skip(data[0].id);
+  //         TrackPlayer.play();
+  //         setIsPlayerReady(true);
+  //       });
+  //     });
+  //   };
+  //   addTracks();
+  // }, [data]);
   useEffect(() => {
     async function setup() {
       let isSetup = await setupPlayer();
 
       const queue = await TrackPlayer.getQueue();
-
-      console.log('list', list);
-      console.log('queue', queue);
-
+      // setQueueImp(queue);
+      console.log('queue::::', queue);
       if (isSetup && queue.length <= 0) {
         await addTracks(...queue);
       }
@@ -156,7 +193,8 @@ export const PlayListScreen = () => {
 
     setup();
   }, []);
-  if (isPlayerReady) {
+
+  if (!isPlayerReady) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator size="large" color="#bbb" />
