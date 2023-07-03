@@ -107,8 +107,10 @@ function Playlist() {
 
 const Controls = ({ onShuffle }) => {
   console.log('Controls');
-
   const playerState = usePlaybackState();
+  console.log('PLAYR STATE', playerState);
+
+  const isPlaying = playerState.state == 'playing';
 
   async function handlePlayPress() {
     if ((await TrackPlayer.getState()) == State.Playing) {
@@ -120,7 +122,7 @@ const Controls = ({ onShuffle }) => {
 
   return (
     <TouchableOpacity onPress={handlePlayPress} style={{ marginTop: 16, width: 60, height: 60 }}>
-      {!playerState == State.Playing ? (
+      {isPlaying ? (
         <Image
           style={{ width: 60, resizeMode: 'contain', tintColor: AcentColor }}
           source={require('../public/icons8-pause-50.png')}

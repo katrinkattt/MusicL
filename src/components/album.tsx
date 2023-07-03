@@ -8,7 +8,7 @@ type AlbumSectionProps = PropsWithChildren<{
   // children?: JSX.Element;
 }>;
 
-export const AlbumSection = ({ title }: AlbumSectionProps): JSX.Element => {
+export const AlbumSection = ({ title, color }: AlbumSectionProps): JSX.Element => {
   return (
     <View style={styles.sectionContainer}>
       <MainText text={title} size={18} style={styles.albumTitle} />

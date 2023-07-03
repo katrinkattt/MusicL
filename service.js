@@ -39,15 +39,6 @@ export async function addTracks(tracks) {
   } else {
     await TrackPlayer.add([
       {
-        url: require('./files/Nirvana_-_Smells_Like_Teen_Spirit_(musmore.com).mp3'),
-        title: 'Smells Like Teen Spirit',
-        artist: 'Nirvana',
-        artwork: 'https://i1.sndcdn.com/artworks-000661266283-od11y9-t500x500.jpg',
-        duration: 278,
-        loadImg: '',
-        genre: 'Progressive House, rock',
-      },
-      {
         url: require('./files/David_Guetta_Bebe_Rexha_I_m_Good_Blue_Offic.mp3'),
         title: "I'm Good",
         artist: 'David Guetta',
@@ -56,6 +47,16 @@ export async function addTracks(tracks) {
         loadImg: './src/public/musicimg.jpeg',
         genre: 'Progressive House, Electro House',
       },
+      {
+        url: require('./files/Nirvana_-_Smells_Like_Teen_Spirit_(musmore.com).mp3'),
+        title: 'Smells Like Teen Spirit',
+        artist: 'Nirvana',
+        artwork: 'https://i1.sndcdn.com/artworks-000661266283-od11y9-t500x500.jpg',
+        duration: 278,
+        loadImg: '',
+        genre: 'Progressive House, rock',
+      },
+
       {
         url: require('./files/The_Beatles_Here_Comes_The_Sun.mp3'),
         title: 'Here comes the sun',

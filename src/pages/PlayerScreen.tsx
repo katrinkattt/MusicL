@@ -173,7 +173,10 @@ function Playlist({ queue }) {
       <PlaylistItem element={queue[currentTrack]} />
       <Controls onShuffle={handleShuffle} />
       <Text style={{ color: '#fff', paddingTop: 18, fontSize: 16 }}>
-        No matter where I go, it's a good time, yeah
+        I'm good, yeah, I'm feelin' alright
+      </Text>
+      <Text style={{ color: '#fff', paddingTop: 10, fontSize: 16 }}>
+        Baby, I'ma have the best...
       </Text>
     </View>
   );

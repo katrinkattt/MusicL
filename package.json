@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-async-storage/async-storage": "^1.19.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.4",
     "@react-navigation/native": "^6.1.6",
@@ -20,6 +20,7 @@
     "pod-install": "^0.1.38",
     "react": "18.2.0",
     "react-native": "^0.71.4",
+    "react-native-dropdown-picker": "^5.4.6",
     "react-native-gesture-handler": "^2.10.1",
     "react-native-progress": "^5.0.0",
     "react-native-reanimated": "^2.14.4",
