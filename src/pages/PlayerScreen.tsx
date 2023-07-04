@@ -17,10 +17,11 @@ import TrackPlayer, {
   State,
 } from 'react-native-track-player';
 import * as Progress from 'react-native-progress';
+import { getPlaybackState } from 'react-native-track-player/lib/trackPlayer';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
 import { QueueList } from '../../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
-import { getPlaybackState } from 'react-native-track-player/lib/trackPlayer';
+import { IconLikeActive, IconLikeUnActive } from '../components/icons';
 
 const events = [Event.PlaybackState, Event.PlaybackError, Event.PlaybackActiveTrackChanged];
 
@@ -79,9 +80,13 @@ function Playlist({ queue }) {
         TrackPlayer.play();
       }
     }
+    const like = false;
 
     return (
       <View>
+        <View style={{ position: 'absolute', marginLeft: '75%', top: -30 }}>
+          {like ? <IconLikeActive /> : <IconLikeUnActive />}
+        </View>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
           <TouchableOpacity
             onPress={() => {

@@ -12,6 +12,8 @@ const ru = {
       forAuthors: 'Стать автором',
       aboutUs: 'О нас',
     },
+    lang: 'Язык',
+    theme: 'Тема',
   },
   main_title: 'Музыка и не только',
   buttons: {
@@ -49,6 +51,8 @@ const en = {
       forAuthors: 'Become an author',
       aboutUs: 'About Us',
     },
+    lang: 'Languages',
+    theme: 'Theme',
   },
   main_title: 'Music and more',
   buttons: {
@@ -86,6 +90,8 @@ const cn = {
       forAuthors: '成为作家',
       aboutUs: '关于我们',
     },
+    lang: '语言',
+    theme: '主题',
   },
   main_title: '音乐及更多',
   buttons: {
@@ -123,6 +129,8 @@ const es = {
       forAuthors: 'Conviértete en autor',
       aboutUs: 'Acerca de nosotros',
     },
+    lang: 'Idiomas',
+    theme: 'Tema',
   },
   main_title: 'musica y mas',
   buttons: {

@@ -5,18 +5,12 @@ import { useTypedSelector } from '../hook/useTypedSelector';
 import { Logo } from '../components/logo';
 import { lang } from '../lang/lang';
 import { MainTheme, AcentColor } from '../style/theme';
-import { useDispatch } from 'react-redux';
 import { AlbumSection } from '../components/album';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
-import { LanguageAction } from '../redux/settings/languageSlice';
+import { DropDownLang } from '../components/DropDownLang';
 
 export const HomeScreen = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
   const lng = useTypedSelector((state) => state.language);
-  const [DropDownOpen, setDropDownOpen] = useState(false);
-  const [DropDownValue, setDropDownValue] = useState(lng);
   navigation.setOptions({ headerShown: false });
 
   return (
@@ -27,30 +21,12 @@ export const HomeScreen = () => {
             style={{
               flexDirection: 'row',
               flexWrap: 'wrap',
-              marginBottom: DropDownOpen ? 160 : 10,
             }}
           >
             <Logo />
-            <DropDownPicker
-              disableBorderRadius={true}
-              onSelectItem={async (item) => {
-                dispatch(LanguageAction.setLanguage(item.value ? item.value : 'en'));
-                // NativeModules.DevSettings.reload();
-                console.log(lng, 'LNGGGGGGGG');
-              }}
-              closeAfterSelecting={true}
-              theme={'DARK'}
-              open={DropDownOpen}
-              value={DropDownValue}
-              items={[
-                { label: 'English', value: 'en' },
-                { label: 'Русский', value: 'ru' },
-                { label: '中文', value: 'cn' },
-                { label: 'Español', value: 'es' },
-              ]}
-              setOpen={setDropDownOpen}
-              setValue={setDropDownValue}
-            />
+            <View style={{ width: '35%', alignSelf: 'center' }}>
+              <DropDownLang />
+            </View>
           </View>
 
           <TouchableOpacity
