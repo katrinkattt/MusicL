@@ -25,13 +25,13 @@ import { setupPlayer, addTracks } from '../../service';
 import { IconLikeActive, IconLikeUnActive } from '../components/icons';
 import { useTypedSelector } from '../hook/useTypedSelector';
 import { QueueList } from '../playlists/dayPlayList';
+import { MainTheme } from '../style/theme';
 
 const events = [Event.PlaybackState, Event.PlaybackError, Event.PlaybackActiveTrackChanged];
 
 function Playlist({ queue }) {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [playerState, setPlayerState] = useState(null);
-  console.log('curretntttt TRACK', currentTrack);
 
   useTrackPlayerEvents(events, (event) => {
     if (event.type === Event.PlaybackError) {
@@ -183,9 +183,7 @@ function Playlist({ queue }) {
       <Text style={{ color: '#fff', paddingTop: 18, fontSize: 16 }}>
         I'm good, yeah, I'm feelin' alright
       </Text>
-      <Text style={{ color: '#fff', paddingTop: 10, fontSize: 16 }}>
-        Baby, I'ma have the best...
-      </Text>
+      <Text style={{ color: '#fff', paddingTop: 10, fontSize: 16 }}>text</Text>
     </View>
   );
 }
@@ -225,15 +223,19 @@ export const PlayerScreen = () => {
 
   if (!render) {
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#bbb" />
-      </SafeAreaView>
+      <MainTheme>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color="#bbb" />
+        </SafeAreaView>
+      </MainTheme>
     );
   }
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Playlist queue={queueImp} />
-    </View>
+    <MainTheme>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Playlist queue={queueImp} />
+      </View>
+    </MainTheme>
   );
 };
 

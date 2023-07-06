@@ -23,6 +23,7 @@ export async function setupPlayer() {
         Capability.SkipToNext,
         Capability.SkipToPrevious,
         Capability.SeekTo,
+        Capability.Stop,
       ],
       compactCapabilities: [Capability.Play, Capability.Pause, Capability.SkipToNext],
       progressUpdateEventInterval: 2,

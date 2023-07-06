@@ -23,6 +23,7 @@ import { useTypedSelector } from '../hook/useTypedSelector';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
 import { QueueList } from '../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
+import { MainTheme } from '../style/theme';
 
 function Playlist() {
   console.log('Playlist');
@@ -198,15 +199,19 @@ export const PlayListScreen = () => {
 
   if (!isPlayerReady) {
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#bbb" />
-      </SafeAreaView>
+      <MainTheme>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color="#bbb" />
+        </SafeAreaView>
+      </MainTheme>
     );
   }
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Playlist />
-    </View>
+    <MainTheme>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Playlist />
+      </View>
+    </MainTheme>
   );
 };
 

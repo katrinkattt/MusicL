@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageBackground, StyleSheet, useColorScheme } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -49,9 +50,12 @@ const HomeStackScreen = () => {
 };
 
 const TabStack = () => {
-  const isDarkMode = true;
+  const isDarkMode = useColorScheme() === 'dark';
   const colorTxt = !isDarkMode ? '#000' : '#fff';
   const colorBar = isDarkMode ? '#000' : '#fff';
+  const colorsBCG = StyleSheet.create({
+    backgroundColor: '#000',
+  });
 
   const lng = useTypedSelector((state) => state.language);
   return (
@@ -61,8 +65,9 @@ const TabStack = () => {
           position: 'absolute',
           borderColor: AcentColor,
           paddingBottom: 0,
-          bottom: -20,
+          bottom: 0,
           height: 90,
+          backgroundColor: colorBar,
         },
         tabBarActiveTintColor: AcentColor,
         tabBarInactiveTintColor: colorTxt,

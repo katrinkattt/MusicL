@@ -14,7 +14,6 @@ import { PlayerAction } from '../redux/player/playerSlice';
 export const HomeScreen = () => {
   const navigation = useNavigation();
   const lng = useTypedSelector((state) => state.language);
-  navigation.setOptions({ headerShown: false });
   const dispatch = useDispatch();
 
   return (

@@ -224,7 +224,6 @@
 //   const navigation = useNavigation();
 
 //   const { list, nameList } = QueueList;
-//   navigation.setOptions({ title: nameList });
 //   /// CURRENT PLAYLIST NEED REDUCER
 
 //   const [isPlayerReady, setIsPlayerReady] = useState(false);

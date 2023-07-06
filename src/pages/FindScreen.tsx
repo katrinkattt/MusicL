@@ -2,24 +2,32 @@ import { View, Image } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 import { ScreenWidth, AcentColor } from '../style/theme';
 import { IconFind } from '../components/icons';
+import { MainTheme } from '../style/theme';
 
 export const FindScreen = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center' }}>
-      <View
-        style={{ width: ScreenWidth * 0.85, height: 50, backgroundColor: '#222', borderRadius: 6 }}
-      >
-        <Image
+    <MainTheme>
+      <View style={{ flex: 1, alignItems: 'center', marginTop: 30 }}>
+        <View
           style={{
-            aspectRatio: 0.07,
-            resizeMode: 'contain',
-            tintColor: AcentColor,
-            marginTop: -230,
-            marginLeft: ScreenWidth * 0.74,
+            width: ScreenWidth * 0.85,
+            height: 50,
+            backgroundColor: '#222',
+            borderRadius: 6,
           }}
-          source={require('../public/research.png')}
-        />
+        >
+          <Image
+            style={{
+              aspectRatio: 0.07,
+              resizeMode: 'contain',
+              tintColor: AcentColor,
+              marginTop: -230,
+              marginLeft: ScreenWidth * 0.74,
+            }}
+            source={require('../public/research.png')}
+          />
+        </View>
       </View>
-    </View>
+    </MainTheme>
   );
 };
