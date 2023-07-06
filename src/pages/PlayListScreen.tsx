@@ -21,7 +21,7 @@ import TrackPlayer, {
 // import { PlayerAction } from '../redux/player/playerSlice';
 import { useTypedSelector } from '../hook/useTypedSelector';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
-import { QueueList } from '../../playlists/dayPlayList';
+import { QueueList } from '../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
 
 function Playlist() {
@@ -106,7 +106,6 @@ function Playlist() {
 }
 
 const Controls = ({ onShuffle }) => {
-  console.log('Controls');
   const playerState = usePlaybackState();
   console.log('PLAYR STATE', playerState);
 
@@ -138,11 +137,13 @@ const Controls = ({ onShuffle }) => {
 };
 export const PlayListScreen = () => {
   const navigation = useNavigation();
+  /// CURRENT PLAYLIST REDUCER
+  const player = useTypedSelector((state) => state.player);
+  const nameList = player[0]?.nameList || 'Playlist';
+  const dataState = player[0]?.data;
 
-  const { data, nameList } = QueueList;
+  // const { data, nameList } = QueueList;
   navigation.setOptions({ title: nameList });
-  /// CURRENT PLAYLIST NEED REDUCER
-  // const selector = useTypedSelector((state) => state.player);
 
   const [isPlayerReady, setIsPlayerReady] = useState(true);
 
@@ -186,9 +187,8 @@ export const PlayListScreen = () => {
 
       const queue = await TrackPlayer.getQueue();
       // setQueueImp(queue);
-      console.log('queue::::', queue);
       if (isSetup && queue.length <= 0) {
-        await addTracks(...queue);
+        await addTracks(dataState);
       }
       setIsPlayerReady(isSetup);
     }

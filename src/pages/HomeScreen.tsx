@@ -7,11 +7,15 @@ import { lang } from '../lang/lang';
 import { MainTheme, AcentColor } from '../style/theme';
 import { AlbumSection } from '../components/album';
 import { DropDownLang } from '../components/DropDownLang';
+import { QueueList } from '../playlists/dayPlayList';
+import { useDispatch } from 'react-redux';
+import { PlayerAction } from '../redux/player/playerSlice';
 
 export const HomeScreen = () => {
   const navigation = useNavigation();
   const lng = useTypedSelector((state) => state.language);
   navigation.setOptions({ headerShown: false });
+  const dispatch = useDispatch();
 
   return (
     <View>
@@ -39,20 +43,23 @@ export const HomeScreen = () => {
 
           <TouchableOpacity
             onPress={() => {
-              // dispatch(
-              //   PlayerAction.addToPlayer({
-              //     data: QueueList.data.map((track) => {
-              //       return {
-              //         id: track.id,
-              //         title: track.title,
-              //         url: track.url,
-              //         artist: track.artist,
-              //         artwork: track.artwork,
-              //       };
-              //     }),
-              //     songIndex: 1,
-              //   })
-              // );
+              dispatch(
+                PlayerAction.addToPlayer({
+                  data: QueueList.data.map((track) => {
+                    return {
+                      id: track.id,
+                      title: track.title,
+                      url: track.url,
+                      artist: track.artist,
+                      artwork: track.artwork,
+                      duration: track.duration,
+                      loadImg: track.loadImg,
+                      genre: track.genre,
+                    };
+                  }),
+                  nameList: QueueList.nameList,
+                })
+              );
               navigation.navigate('Player');
             }}
           >
@@ -60,10 +67,6 @@ export const HomeScreen = () => {
           </TouchableOpacity>
           <Section title={lang[lng].tracks.title} text={lang[lng].tracks.descr} />
           <Section title={lang[lng].karaoke.title} text={lang[lng].karaoke.descr} />
-          {/* <Section title={lang[lng].autors.title} text={lang[lng].autors.descr} />
-          {/* <Section title={lang[lng].about_me.title} text={lang[lng].about_me.descr} /> */}
-          {/* <Section title={lang[lng].tracks.title} text={lang[lng].tracks.descr} /> */}
-          {/* <Logo size={0.9} /> */}
           <View
             style={{
               marginLeft: 8,
@@ -82,6 +85,8 @@ export const HomeScreen = () => {
               />
             ))}
           </View>
+          <Section title={lang[lng].autors.title} text={lang[lng].autors.descr} />
+          <Section title={lang[lng].about_me.title} text={lang[lng].about_me.descr} />
         </ScrollView>
       </MainTheme>
     </View>

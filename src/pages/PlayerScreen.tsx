@@ -12,16 +12,19 @@ import {
 import TrackPlayer, {
   useTrackPlayerEvents,
   usePlaybackState,
+  useActiveTrack,
   useProgress,
+  RepeatMode,
   Event,
   State,
 } from 'react-native-track-player';
 import * as Progress from 'react-native-progress';
 import { getPlaybackState } from 'react-native-track-player/lib/trackPlayer';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
-import { QueueList } from '../../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
 import { IconLikeActive, IconLikeUnActive } from '../components/icons';
+import { useTypedSelector } from '../hook/useTypedSelector';
+import { QueueList } from '../playlists/dayPlayList';
 
 const events = [Event.PlaybackState, Event.PlaybackError, Event.PlaybackActiveTrackChanged];
 
@@ -189,30 +192,38 @@ function Playlist({ queue }) {
 
 export const PlayerScreen = () => {
   const navigation = useNavigation();
-  const { data, nameList } = QueueList;
+  const player = useTypedSelector((state) => state.player);
+  const dataState = player[0].data;
+  const nameList = player[0].nameList || 'Playlist';
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [render, setRender] = useState(false);
+  // const { nameList } = QueueList;
   const [queueImp, setQueueImp] = useState([]);
   navigation.setOptions({ title: nameList });
-  /// CURRENT PLAYLIST NEED REDUCER
 
-  const [isPlayerReady, setIsPlayerReady] = useState(false);
-
-  useEffect(() => {
-    async function setup() {
-      let isSetup = await setupPlayer();
-
-      const queue = await TrackPlayer.getQueue();
-      setQueueImp(queue);
-      console.log('queue::::', queue);
-      if (isSetup && queue.length <= 0) {
-        await addTracks(...queue);
-      }
-      setIsPlayerReady(isSetup);
+  async function setup() {
+    let isSetup = await setupPlayer();
+    const queue = await TrackPlayer.getQueue();
+    setQueueImp(queue);
+    console.log('queue::::', queue);
+    if (isSetup && queue.length <= 0) {
+      await addTracks(dataState);
     }
-
+    setIsPlayerReady(isSetup);
+  }
+  useEffect(() => {
     setup();
   }, []);
+  useEffect(() => {
+    if (isPlayerReady) {
+      setTimeout(() => {
+        setup();
+        setRender(true);
+      }, 500);
+    }
+  }, [isPlayerReady]);
 
-  if (!isPlayerReady) {
+  if (!render) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator size="large" color="#bbb" />

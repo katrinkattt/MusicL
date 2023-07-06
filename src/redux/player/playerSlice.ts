@@ -1,25 +1,26 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type PlayerState = {
-	songIndex: number
-	data: {
-		id: number | string
-		url: string
-		title: string
-		artist: string
-		artwork: string
-	}[]
-}
+  nameList: string;
+  data: {
+    id: number;
+    url: string;
+    title: string;
+    artist: string;
+    artwork: string;
+    duration: number;
+    loadImg: string;
+    genre: string;
+  }[];
+};
 export const playerSlice = createSlice({
-	name: 'player',
-	initialState: [] as Array<PlayerState>,
-	reducers: {
-		addToPlayer: (state, { payload }: PayloadAction<PlayerState>) => {
-			state.length = 0
-			state.push.apply(state, [
-				{ songIndex: payload.songIndex, data: payload.data }
-			])
-		}
-	}
-})
-export const { reducer: playerReducer, actions: PlayerAction } = playerSlice
+  name: 'player',
+  initialState: [] as Array<PlayerState>,
+  reducers: {
+    addToPlayer: (state, { payload }: PayloadAction<PlayerState>) => {
+      state.length = 0;
+      state.push.apply(state, [{ data: payload.data, nameList: payload.nameList }]);
+    },
+  },
+});
+export const { reducer: playerReducer, actions: PlayerAction } = playerSlice;

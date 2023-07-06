@@ -31,7 +31,7 @@ import TrackPlayer, {
 // import { PlayerAction } from '../redux/player/playerSlice';
 import { useTypedSelector } from '../hook/useTypedSelector';
 import { AcentColor, ScreenWidth, colorTxt } from '../style/theme';
-import { QueueList } from '../../playlists/dayPlayList';
+import { QueueList } from '../playlists/dayPlayList';
 import { setupPlayer, addTracks } from '../../service';
 
 function Playlist() {
@@ -55,7 +55,7 @@ function Playlist() {
   //   }
   // });
 
-  function PlaylistItem({ index, element }) {
+  function PlaylistItem({ element }) {
     return (
       <View style={styles.trackContainer}>
         <View style={styles.img_track_load}>
@@ -133,19 +133,19 @@ const Controls = ({ onShuffle }) => {
 export const MyMusicScreen = () => {
   // const navigation = useNavigation();
 
-  // const { data, nameList } = QueueList;s
+  const { data, nameList } = QueueList;
   /// CURRENT PLAYLIST NEED REDUCER
   // const selector = useTypedSelector((state) => state.player);
 
   const [isPlayerReady, setIsPlayerReady] = useState(true);
 
+  const [queue, setQueue] = useState([]);
   // useEffect(() => {
   //   async function setup() {
   //     let isSetup = await setupPlayer();
   //     setIsPlayerReady(isSetup);
   //     await TrackPlayer.setRepeatMode(RepeatMode.Queue);
   //   }
-
   //   setup();
   // }, []);
 

@@ -1,4 +1,5 @@
 {
   "name": "MusicL",
-  "displayName": "MusicL"
+  "displayName": "MusicL",
+  "icon": "./src/public/logo.png"
 }

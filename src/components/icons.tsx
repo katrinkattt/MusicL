@@ -4,7 +4,7 @@ import { AcentColor } from '../style/theme';
 export const IconMusic = () => (
   <View>
     <Image
-      style={{ aspectRatio: 0.1, resizeMode: 'contain', tintColor: AcentColor }}
+      style={{ height: 50, width: 60, resizeMode: 'contain', tintColor: AcentColor }}
       source={require('../public/sound.png')}
     />
   </View>
